@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\OrderController;
 use App\Http\Controllers\Api\ReviewController;
 use App\Http\Controllers\Api\WishlistController;
+use App\Http\Controllers\Api\AddressController;
 
 
 
@@ -120,4 +121,15 @@ Route::middleware('jwt.auth', 'api')->group(function () {
     Route::get('/reviews/{id}', [ReviewController::class, 'show'])->name('reviews/show');
     Route::put('/reviews/{reviewId}', [ReviewController::class, 'update']);
     Route::delete('/reviews/{id}', [ReviewController::class, 'destroy'])->name('reviews/destroy');
+});
+
+///////////////////////////////////////////
+///            For Addresses           ///
+/////////////////////////////////////////
+Route::middleware('jwt.auth', 'api')->group(function () {
+    Route::get('addresses', [AddressController::class, 'index']);
+    Route::post('addresses', [AddressController::class, 'store']);
+    Route::get('addresses/{id}', [AddressController::class, 'show']);
+    Route::put('addresses/{id}', [AddressController::class, 'update']);
+    Route::delete('addresses/{id}', [AddressController::class, 'destroy']);
 });

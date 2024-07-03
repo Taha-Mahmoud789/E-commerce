@@ -49,6 +49,13 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->hasMany(Wishlist::class);
     }
+
+
+    public function addresses()
+    {
+        return $this->hasMany(Address::class);
+    }
+
     /**
      * Get the identifier that will be stored in the subject claim of the JWT.
      *
