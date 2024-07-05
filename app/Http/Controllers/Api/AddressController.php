@@ -8,15 +8,31 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 use App\Http\Requests\StoreAddressRequest;
 use App\Http\Requests\UpdateAddressRequest;
 use App\Models\Address;
+use Illuminate\Support\Facades\DB;
 
 class AddressController extends Controller
 {
     // List all addresses for the authenticated user
     public function index()
     {
-        $addresses = JWTAuth::parseToken()->authenticate()->addresses;
+        // $addresses = JWTAuth::parseToken()->authenticate()->addresses;
+        // $user = JWTAuth::parseToken()->authenticate();
+        // return response()->json(['Addresses'=>$addresses ,'User'=> $user]);
+        // Authenticate and get the user
         $user = JWTAuth::parseToken()->authenticate();
-        return response()->json(['Addresses'=>$addresses ,'User'=> $user]);
+
+        if (!$user) {
+            return response()->json(['message' => 'User not found'], 404);
+        }
+
+        // Perform a join query to get user and address data
+        $addresses = DB::table('addresses')
+            ->join('users', 'addresses.user_id', '=', 'users.id')
+            ->where('users.id', $user->id)
+            ->select('users.name', 'users.email', 'addresses.*')
+            ->get();
+
+        return response()->json(['message'=> $addresses]);
     }
 
     // Add a new address
