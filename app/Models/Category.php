@@ -10,6 +10,8 @@ class Category extends Model implements JWTSubject
     use HasFactory;
     protected $tabel='categores';
     protected $guarded = [ ];
+
+    
      //  Get the identifier that will be stored in the subject claim of the JWT.
     
     //  @return mixed
