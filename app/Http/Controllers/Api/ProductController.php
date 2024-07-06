@@ -16,10 +16,13 @@ class ProductController extends Controller
     public function index()
     {
 
-        $products = Product::select('products.*', 'inventory.quantity')
-            ->leftJoin('inventory', 'products.id', '=', 'inventory.product_id')
-            ->latest()
-            ->simplePaginate(10);
+        $products = Product::with('inventory')
+        ->latest()
+        ->simplePaginate(10);
+        // $products = Product::select('products.*', 'inventory.quantity')
+        //     ->leftJoin('inventory', 'products.id', '=', 'inventory.product_id')
+        //     ->latest()
+        //     ->simplePaginate(10);
         return response()->json(['message' => 'successfully', 'products' => $products]);
     }
 
