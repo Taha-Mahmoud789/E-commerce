@@ -92,7 +92,7 @@ Route::middleware(['jwt.auth', 'admin', 'api'])->group(function () {
 Route::middleware(['jwt.auth', 'admin', 'api'])->group(function () {
     Route::group(['prefix' => 'admin'], function () {
         Route::get('/products', [ProductController::class, 'index'])->name('products');
-        Route::post('/products/create', [ProductController::class, 'create'])->name('products/create');
+        Route::post('/products/store', [ProductController::class, 'store']);
         Route::put('/products/edit/{id}', [ProductController::class, 'update'])->name('products/update');
         Route::post('/products/{id}/image', [ProductController::class, 'updateImage'])->name('products/updateImage');
         Route::get('/products/show/{id}', [ProductController::class, 'show'])->name('products/show');

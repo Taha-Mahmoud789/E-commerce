@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -8,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class Address extends Model implements JWTSubject
 {
     use HasFactory;
-    protected $tabel='addresses';
+    protected $tabel = 'addresses';
     protected $fillable = [
         'user_id',
         'address_line_1',
@@ -23,21 +24,21 @@ class Address extends Model implements JWTSubject
     {
         return $this->belongsTo(User::class);
     }
-       //  Get the identifier that will be stored in the subject claim of the JWT.
-    
+    //  Get the identifier that will be stored in the subject claim of the JWT.
+
     //  @return mixed
-    
-   public function getJWTIdentifier()
-   {
-       return $this->getKey();
-   }
+
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
 
     //     Return a key value array, containing any custom claims to be added to the JWT.
-    
+
     //      @return array
-      
-   public function getJWTCustomClaims()
-   {
-       return [];
-   }
+
+    public function getJWTCustomClaims()
+    {
+        return [];
+    }
 }

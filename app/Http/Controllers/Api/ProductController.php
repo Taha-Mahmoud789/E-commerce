@@ -27,7 +27,7 @@ class ProductController extends Controller
     }
 
     // Create   Product
-    public function create(StoreProductRequest $request)
+    public function store(StoreProductRequest $request)
     {
         // Handle image upload
         $imagePath = null;
