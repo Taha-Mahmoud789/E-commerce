@@ -3,16 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\CouponController;
-use App\Http\Controllers\Api\CategoriesController;
-use App\Http\Controllers\Api\AuthController;
-use App\Http\Controllers\Api\ProductController;
-use App\Http\Controllers\Api\OrderController;
-use App\Http\Controllers\Api\ReviewController;
-use App\Http\Controllers\Api\WishlistController;
-use App\Http\Controllers\Api\AddressController;
-
-
+use App\Http\Controllers\Api\{CouponController, CategoriesController, AuthController, ProductController, OrderController, ReviewController, WishlistController, AddressController};
 
 
 //////////////////////////////////////////

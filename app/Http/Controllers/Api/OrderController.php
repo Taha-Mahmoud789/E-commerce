@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Api;
+
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\OrderItem;
@@ -16,7 +17,7 @@ class OrderController extends Controller
 {
     public function store(StoreOrderRequest $request)
     {
-      
+
         // Check product quantities
         foreach ($request->input('items') as $item) {
             $inventory = Inventory::where('product_id', $item['product_id'])->first();
@@ -27,7 +28,7 @@ class OrderController extends Controller
         }
 
         // Create the order
-          $user = JWTAuth::parseToken()->authenticate();
+        $user = JWTAuth::parseToken()->authenticate();
         $order = Order::create([
             'user_id' => $user->id,
             'customer_name' => $user->name, // Get name from authenticated user
@@ -62,7 +63,7 @@ class OrderController extends Controller
 
         return response()->json(['message' => 'Order created successfully', 'order' => $order]);
     }
-    
+
     /////////////////////////////////////
 
     public function restore($orderId)

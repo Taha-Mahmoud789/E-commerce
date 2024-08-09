@@ -21,7 +21,7 @@ class UpdateProductRequest extends FormRequest
      */
     public function rules(): array
     {
-        // echo dd("Test");
+
         return [
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
